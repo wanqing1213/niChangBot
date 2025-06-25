@@ -40,7 +40,7 @@ public class NiChangBot implements SpringLongPollingBot, LongPollingSingleThread
 
     @Override
     public LongPollingUpdateConsumer getUpdatesConsumer() {
-        return null;
+        return this;
     }
 
     @Override

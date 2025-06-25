@@ -34,8 +34,24 @@ mybatis:
 
 telegram:
   bot:
-    token: 123456:ABCDEFG
+    token: 
 
+# 日志配置 (Logback)
+logging:
+  level:
+    root: INFO
+    com.wanqing.nichang: DEBUG # 您的项目包名
+    org.springframework.security: DEBUG
+    org.springframework.web: DEBUG
+  file:
+    name: E:/logs/niChangBot.log  # 核心配置
+  logback:
+    rollingpolicy:
+      max-history: 30
+      max-file-size: 100MB
+  pattern:
+    #console: '%d{yyyy-MM-dd HH:mm:ss} - %logger{36} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
 
 
 

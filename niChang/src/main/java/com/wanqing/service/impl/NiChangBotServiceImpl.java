@@ -1,7 +1,12 @@
 package com.wanqing.service.impl;
 
+import com.alibaba.fastjson2.JSONObject;
 import com.wanqing.config.VirtualThreadConfig;
 import com.wanqing.service.NiChangBotService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -17,21 +22,21 @@ import java.util.concurrent.Executor;
  * @file NiChangBotServiceImpl
  * @description 霓裳Bot主方法实现类
  */
-
+@Slf4j
 @Service
+@RequiredArgsConstructor
 public class NiChangBotServiceImpl implements NiChangBotService {
 
     private final Executor virtualThreadExecutor;
 
-    public NiChangBotServiceImpl(
-            @Qualifier("contextAwareVirtualThreadExecutor") Executor virtualThreadExecutor
-    ) {
-        this.virtualThreadExecutor = virtualThreadExecutor;
-    }
-
-
     @Override
     public void mainFunction(TelegramClient telegramClient, Update update) {
 
+        virtualThreadExecutor.execute(() -> {
+            log.info("update:{}", JSONObject.toJSONString(update));
+            log.info("结果： {}", Thread.currentThread().isVirtual());
+
+        });
     }
+
 }

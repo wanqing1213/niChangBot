@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 命名空间指向对应的Mapper接口 -->
+<mapper namespace="com.wanqing.mapper.UserMapper">
+
+    <!-- 结果映射：数据库字段 -> Java对象属性 -->
+    <resultMap id="UserResultMap" type="com.wanqing.entity.User">
+        <id property="id" column="user_id"/>       <!-- 主键映射 -->
+        <result property="userId" column="user_id"/>
+        <result property="userName" column="user_name"/>
+        <result property="registerTime" column="create_time"/>
+    </resultMap>
+
+    <!-- 插入用户 -->
+    <insert id="insertUser" parameterType="com.example.entity.User" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO user (user_id, user_name, create_time)
+        VALUES (#{userId}, #{userName}, NOW())
+    </insert>
+
+    <!-- 根据ID查询用户 -->
+    <select id="selectUserById" resultMap="UserResultMap">
+        SELECT user_id, user_name, create_time
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
+    <!-- 更新用户 -->
+    <update id="updateUser" parameterType="com.example.entity.User">
+        UPDATE user
+        SET user_name  = #{userName}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!-- 删除用户 -->
+    <delete id="deleteUser">
+        DELETE
+        FROM user
+        WHERE user_id = #{userId}
+    </delete>
+</mapper>
