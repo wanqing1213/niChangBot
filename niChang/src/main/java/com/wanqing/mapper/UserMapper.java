@@ -1,8 +1,7 @@
 package com.wanqing.mapper;
 
-import com.wanqing.entity.User;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
+
+import org.springframework.stereotype.Repository;
 
 /**
  * @author 婉清
@@ -12,12 +11,12 @@ import org.apache.ibatis.annotations.Param;
  * @file UserMapper
  * @description
  */
-@Mapper
+@Repository
 public interface UserMapper {
 
-    User selectUserById(@Param("userId") String userId);
+/*    User selectUserById(@Param("userId") String userId);
 
-    void insertUser(User user);
+    void insertUser(User user);*/
 
 
 }

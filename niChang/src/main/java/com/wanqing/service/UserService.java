@@ -12,5 +12,9 @@ import org.telegram.telegrambots.meta.api.objects.Update;
  */
 public interface UserService {
 
-    void registerUser(Update  update);
+    /**
+     * 注册用户
+     * @param update telegram.update
+     */
+    void registerUser(Update update);
 }

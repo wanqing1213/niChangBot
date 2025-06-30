@@ -13,30 +13,30 @@
         <result property="registerTime" column="create_time"/>
     </resultMap>
 
-    <!-- 插入用户 -->
+<!--    &lt;!&ndash; 插入用户 &ndash;&gt;
     <insert id="insertUser" parameterType="com.example.entity.User" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO user (user_id, user_name, create_time)
         VALUES (#{userId}, #{userName}, NOW())
     </insert>
 
-    <!-- 根据ID查询用户 -->
+    &lt;!&ndash; 根据ID查询用户 &ndash;&gt;
     <select id="selectUserById" resultMap="UserResultMap">
         SELECT user_id, user_name, create_time
         FROM user
         WHERE user_id = #{userId}
     </select>
 
-    <!-- 更新用户 -->
+    &lt;!&ndash; 更新用户 &ndash;&gt;
     <update id="updateUser" parameterType="com.example.entity.User">
         UPDATE user
         SET user_name  = #{userName}
         WHERE user_id = #{userId}
     </update>
 
-    <!-- 删除用户 -->
+    &lt;!&ndash; 删除用户 &ndash;&gt;
     <delete id="deleteUser">
         DELETE
         FROM user
         WHERE user_id = #{userId}
-    </delete>
+    </delete>-->
 </mapper>
