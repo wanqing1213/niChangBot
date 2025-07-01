@@ -7,11 +7,59 @@
 
     <!-- 结果映射：数据库字段 -> Java对象属性 -->
     <resultMap id="UserResultMap" type="com.wanqing.entity.User">
-        <id property="id" column="user_id"/>       <!-- 主键映射 -->
+        <!-- 主键映射 -->
         <result property="userId" column="user_id"/>
         <result property="userName" column="user_name"/>
-        <result property="registerTime" column="create_time"/>
+        <result property="tgName" column="tg_name"/>
+        <result property="registerTime" column="register_time"/>
+        <result property="timeCountAdd" column="time_count_add"/>
+        <result property="timeCountReduce" column="time_count_reduce"/>
+        <result property="toys" column="toys"/>
+        <result property="xpInfo" column="xp_info"/>
+        <result property="clothes" column="clothes"/>
     </resultMap>
+
+    <sql id="Base_Column_List">
+        user_id, user_name, tg_name, register_time, time_count_add, time_count_reduce, toys, xp_info, clothes
+    </sql>
+
+    <select id="selectUserById" resultMap="UserResultMap">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM user
+        WHERE user_id = #{userId}
+    </select>
+
+
+    <insert id="insertUser" parameterType="com.wanqing.entity.User">
+        INSERT INTO user (user_id, user_name, tg_name, register_time, time_count_add, time_count_reduce, toys, xp_info, clothes)
+        VALUES (#{userId}, #{userName}, #{tgName}, #{registerTime}, #{timeCountAdd}, #{timeCountReduce}, #{toys}, #{xpInfo}, #{clothes})
+    </insert>
+
+    <update id="updateToys" parameterType="com.wanqing.entity.User">
+        UPDATE user
+        SET toys = #{toys}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateXpInfo" parameterType="com.wanqing.entity.User">
+        UPDATE user
+        SET xp_info = #{xpInfo}
+        WHERE user_id = #{userId}
+    </update>
+
+    <update id="updateClothes" parameterType="com.wanqing.entity.User">
+        UPDATE user
+        SET clothes = #{clothes}
+        WHERE user_id = #{userId}
+    </update>
+
+    <!--更新次数-->
+    <update id="updateTimeCount" parameterType="com.wanqing.entity.User">
+        UPDATE user
+        SET time_count_add = 5, time_count_reduce = 5
+
+    </update>
 
 <!--    &lt;!&ndash; 插入用户 &ndash;&gt;
     <insert id="insertUser" parameterType="com.example.entity.User" useGeneratedKeys="true" keyProperty="id">

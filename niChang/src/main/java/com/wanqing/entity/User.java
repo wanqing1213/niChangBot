@@ -21,7 +21,18 @@ public class User {
 
     private String userName;
 
+    private String tgName;
+
     private String registerTime;
 
+    private Integer timeCountAdd;
+
+    private Integer timeCountReduce;
+
+    private String toys;
+
+    private String xpInfo;
+
+    private String clothes;
 
 }

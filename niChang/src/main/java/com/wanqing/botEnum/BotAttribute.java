@@ -12,6 +12,7 @@ import lombok.Getter;
  */
 @Getter
 public enum BotAttribute {
+    NAME("nichangs_bot"),
 
     PRIVATE("private"),
 
